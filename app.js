@@ -15,6 +15,10 @@ pfc.controller('body', function ($scope) {
     ]
   };
 
+  $scope.$watch('info', function (n) {
+    console.log(n);
+  });
+
   $scope.addALoan = function () {
     var loanNumber = $scope.info.loans.length + 1;
 
@@ -32,24 +36,24 @@ pfc.controller('body', function ($scope) {
 });
 
 // Credit: http://stackoverflow.com/a/19890485
-pfc.directive('format', ['$filter', function ($filter) {
-    return {
-        require: '?ngModel',
-        link: function (scope, elem, attrs, ctrl) {
-            if (!ctrl) return;
+// pfc.directive('format', ['$filter', function ($filter) {
+//     return {
+//         require: '?ngModel',
+//         link: function (scope, elem, attrs, ctrl) {
+//             if (!ctrl) return;
 
-            ctrl.$formatters.unshift(function (a) {
-                return $filter(attrs.format)(ctrl.$modelValue)
-            });
+//             ctrl.$formatters.unshift(function (a) {
+//                 return $filter(attrs.format)(ctrl.$modelValue)
+//             });
 
-            ctrl.$parsers.unshift(function (viewValue) {
-                var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
-                elem.val($filter(attrs.format)(plainNumber));
-                return plainNumber;
-            });
-        }
-    };
-}]);
+//             ctrl.$parsers.unshift(function (viewValue) {
+//                 var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
+//                 elem.val($filter(attrs.format)(plainNumber));
+//                 return plainNumber;
+//             });
+//         }
+//     };
+// }]);
 
 pfc.directive('infoForm', ['$filter', function ($filter) {
     return {

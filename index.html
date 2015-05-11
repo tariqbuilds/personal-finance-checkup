@@ -35,7 +35,7 @@
 	    <br/><br/>
 
 	    <div class="row">
-			<div class="col-md-8">
+			<div class="col-md-7">
 			    <form name="mainForm" class="center-block">			    	
 			    	
 			    	<!-- Age -->
@@ -205,17 +205,28 @@
 			    </form>
 			</div>
 
-			<div class="col-md-4">
-				<div class="lead">Advice</div>
-					<div class="list-group">
-						<a href="#" class="list-group-item">
-							<h4 class="list-group-item-heading">Yo</h4>
-							<p class="list-group-item-text">
-								Read every word of the 
-								<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/index">FAQs on /r/personalfinance</a>.
-							</p>
+			<div class="col-md-5">
+				<div class="lead">Results</div>
+				<ol>
+					<li ng-show="(((info.salary/12) * 3) > info.emergency_account)">
+						Before anything else, build an 
+						<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/commontopics#wiki_step_1.3A_build_an_emergency_fund">
+							emergency fund
 						</a>
-					</div>
+						with 3 months salary.
+					</li>
+					<li >
+						
+					</li>
+					<li>
+						Read every word of the 
+						<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/index">FAQs on /r/personalfinance</a>.
+					</li>
+					<li ng-show="info.age < 22">
+						Please read <a target="_blank" href="https://www.reddit.com/r/personalfinance/wiki/teachme">this advice</a> 
+						for young folks like yourself.
+					</li>
+				</ol>
 			</div>
 		</div>
 
