@@ -27,73 +27,195 @@
     </head>
     <body ng-controller="body" class="container">
         
-        <div class="text-center">
-	        <div class="lead">Personal Finance Checkup</div>
-	        <p>Based on advice from <a href="http://www.reddit.com/r/personalfinance">/r/personalfinance</a>. </p>
+        <div class="text-center page-header">
+	        <h1>Personal Finance Checkup</h1>
+	        <p>Based on advice from <a href="http://www.reddit.com/r/personalfinance/wiki/commontopics">/r/personalfinance</a>. </p>
 	    </div>
 
 	    <br/><br/>
 
 	    <div class="row">
-			
 			<div class="col-md-8">
-			    <form name="mainForm" class="center-block">
+			    <form name="mainForm" class="center-block">			    	
 			    	
+			    	<!-- Age -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="age">
+							<a target="_blank" href="https://www.reddit.com/r/personalfinance/wiki/teachme">
+								Age
+							</a>
+						</label>  
+						<div class="input-group input-group-sm col-md-4">
+							<input 
+								id="age"
+								ng-model="info.age" 
+								name="age" 
+								type="number"
+								class="form-control">
+							<span class="input-group-addon">Years Young</span>
+		  				</div>
+					</div>
+
 			    	<!-- Annual Salary -->
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="salary">Annual Salary</label>  
-						<div class="input-group col-md-4">
+						<div class="input-group input-group-sm col-md-4">
 		    				<span class="input-group-addon text-success">$</span>
 							<input 
-								ng-model="checkup.salary" 
 								id="salary"
+								ng-model="info.salary" 
 								name="salary" 
+								format="number"
+								type="number"
+								class="form-control">
+		  				</div>
+					</div>
+
+					<!-- Emergency Account amount -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="emergency_account">
+							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/emergencyfunds">
+								Emergency Account
+							</a>
+						</label>  
+						<div class="input-group input-group-sm col-md-4">
+		    				<span class="input-group-addon text-success">$</span>
+							<input 
+								id="emergency_account"
+								ng-model="info.emergency_account" 
+								name="emergency_account" 
 								format="number"
 								type="text" 
 								class="form-control lead">
 		  				</div>
 					</div>
 
+					<!-- Savings Account amount -->
 					<div class="form-group">
-						<label class="col-md-4 control-label">Do you have an Emergecy account?</label>
-						
-						<div class="input-group col-md-4">					
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" ng-model="checkup.has_emergency_account" ng-value="true">
-									Yes
-								</label>
-							</div>
-						</div>
+						<label class="col-md-4 control-label" for="savings_account">
+							Savings Account(s)
+						</label>  
+						<div class="input-group input-group-sm col-md-4">
+		    				<span class="input-group-addon text-success">$</span>
+							<input 
+								id="savings_account"
+								ng-model="info.savings_account" 
+								name="savings_account" 
+								format="number"
+								type="text" 
+								class="form-control lead">
+		  				</div>
 					</div>
 
-					<!-- Emergency Account amount -->
-						<div class="form-group" ng-show="checkup.has_emergency_account" ng-class="{ 'animated fadeInDown': checkup.has_emergency_account }">
+					<!-- 401k -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="retirement_401k">
+							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/401k">
+								401k
+							</a>
+						</label>  
+						<div class="input-group input-group-sm col-md-4">
+		    				<span class="input-group-addon text-success">$</span>
+							<input 
+								id="retirement_401k"
+								ng-model="info.retirement_401k" 
+								name="retirement_401k" 
+								format="number"
+								type="text" 
+								class="form-control lead">
+		  				</div>
+					</div>
 
-							<label class="col-md-4 control-label" for="emergency_account">
-								<i class="glyphicon glyphicon-arrow-up"></i>
-								How much is in it?
-							</label>  
+					<!-- IRA -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="ira">
+							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/iras">
+								IRA
+							</a>
+						</label>  
+						<div class="input-group input-group-sm col-md-4">
+		    				<span class="input-group-addon text-success">$</span>
+							<input 
+								id="ira"
+								ng-model="info.ira" 
+								name="ira" 
+								format="number"
+								type="text" 
+								class="form-control lead">
+		  				</div>
+					</div>
 
-							<div class="input-group col-md-4">
-			    				<span class="input-group-addon text-success">$</span>
-								<input 
-									ng-model="checkup.emergency_account" 
-									id="emergency_account"
-									name="emergency_account" 
-									format="number"
-									type="text" 
-									class="form-control lead">
-			  				</div>
+					<!-- Taxable Investments -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="taxable_investments">
+							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/investing">
+								Taxable Investments
+							</a>
+						</label>  
+						<div class="input-group input-group-sm col-md-4">
+		    				<span class="input-group-addon text-success">$</span>
+							<input 
+								id="taxable_investments"
+								ng-model="info.taxable_investments" 
+								name="taxable_investments" 
+								format="number"
+								type="text" 
+								class="form-control lead">
+		  				</div>
+					</div>
 
+					<!-- Loans -->
+					<div class="form-group form-inline">
+						<label class="col-md-4 control-label">
+							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/debt">
+								Debt <small>(Loans, Mortgages)</small></label>
+							</a>
+						<div class="input-group col-md-4">				
+							<button class="btn btn-info btn-xs" ng-click="addALoan()">
+								<i class="glyphicon glyphicon-plus"></i>
+								Add a loan
+							</button>
 						</div>
+						<br/><br/>
+						<div class="list-group col-md-offset-1">
+							<a ng-repeat="loan in info.loans" class="row list-group-item">
+								<div class="input-group input-group-sm col-md-3">
+									<input class="form-control" ng-model="loan.name">
+								</div>
+
+								<div class="input-group input-group-sm col-md-4">
+									<span class="input-group-addon text-success">$</span>
+									<input class="form-control" ng-model="loan.principle" type="number">
+								</div>
+
+								<span class="text-warning">@</span>
+								
+								<div class="input-group input-group-sm col-md-2">
+									<input class="form-control" ng-model="loan.interest_rate" type="number" step="any">
+									<span class="input-group-addon">%</span>
+								</div>
+								
+								<div class="btn btn-danger btn-sm pull-right" ng-click="removeLoanAt($index)">
+									<i class="glyphicon glyphicon-remove"></i>
+								</div>
+							</a>
+						</div>
+					</div>
 
 			    </form>
 			</div>
 
-			<div class="col-md-3">
-				<div class="lead">Results</div>
-				{{ checkup }}
+			<div class="col-md-4">
+				<div class="lead">Advice</div>
+					<div class="list-group">
+						<a href="#" class="list-group-item">
+							<h4 class="list-group-item-heading">Yo</h4>
+							<p class="list-group-item-text">
+								Read every word of the 
+								<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/index">FAQs on /r/personalfinance</a>.
+							</p>
+						</a>
+					</div>
 			</div>
 		</div>
 
