@@ -5,19 +5,21 @@ pfc.controller('body', function ($scope) {
   
   $scope.info = {
     age: 30,
-    salary: 0,
-    emergency_account: 0,
-    savings_account: 0,
-    retirement_401k: 0,
-    ira: 0,
-    taxable_investments: 0,
+    retirement_401k: {
+      principle: 0,
+      company_match: 6,
+    },
     loans: [
-    ]
+    ],
+    salary: 100,
+    savings_account: 5,
+    emergency_account: 0,
+    ira: 5
   };
 
-  $scope.$watch('info', function (n) {
-    console.log(n);
-  });
+  $scope.threeMonthsSalary = function () {
+    return ($scope.info.salary / 12) * 3;
+  };
 
   $scope.addALoan = function () {
     var loanNumber = $scope.info.loans.length + 1;
@@ -25,8 +27,14 @@ pfc.controller('body', function ($scope) {
     $scope.info.loans.push({
         name: 'Loan #' + loanNumber,
         interest_rate: 4.2,
-        principle: 0,
+        principle: 1000,
     });
+  };
+
+  $scope.getTotalLoans = function () {
+    return $scope.info.loans.reduce(function (a, b) {
+      return a + b.principle;
+    }, 0);
   };
 
   $scope.removeLoanAt = function (index) {

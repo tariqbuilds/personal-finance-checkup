@@ -42,8 +42,9 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="age">
 							<a target="_blank" href="https://www.reddit.com/r/personalfinance/wiki/teachme">
-								Age
+								<small><i class="glyphicon glyphicon-info-sign"></i></small>
 							</a>
+								Age
 						</label>  
 						<div class="input-group input-group-sm col-md-4">
 							<input 
@@ -75,8 +76,9 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="emergency_account">
 							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/emergencyfunds">
-								Emergency Account
+								<small><i class="glyphicon glyphicon-info-sign"></i></small>
 							</a>
+								Emergency Account
 						</label>  
 						<div class="input-group input-group-sm col-md-4">
 		    				<span class="input-group-addon text-success">$</span>
@@ -109,19 +111,34 @@
 
 					<!-- 401k -->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="retirement_401k">
+						<label class="col-md-4 control-label" for="retirement_401k_principle">
 							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/401k">
-								401k
+								<small><i class="glyphicon glyphicon-info-sign"></i></small>
 							</a>
+								401k
 						</label>  
 						<div class="input-group input-group-sm col-md-4">
 		    				<span class="input-group-addon text-success">$</span>
 							<input 
-								id="retirement_401k"
-								ng-model="info.retirement_401k" 
+								id="retirement_401k_principle"
+								ng-model="info.retirement_401k.principle" 
 								name="retirement_401k" 
 								format="number"
 								type="text" 
+								class="form-control lead">
+		  				</div>
+		  				<div class="col-md-offset-1 col-md-3">
+		  					<label for="retirement_401k_company_match">Company Match</label>
+		  				</div>
+		  				<div class="input-group input-group-sm col-md-4 col-md-offset-4">
+		    				<span class="input-group-addon text-success">%</span>
+							<input 
+								id="retirement_401k_company_match"
+								ng-model="info.retirement_401k.company_match" 
+								name="retirement_401k" 
+								format="number"
+								type="text"
+								step="any" 
 								class="form-control lead">
 		  				</div>
 					</div>
@@ -130,8 +147,9 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="ira">
 							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/iras">
-								IRA
+								<small><i class="glyphicon glyphicon-info-sign"></i></small>
 							</a>
+								IRA
 						</label>  
 						<div class="input-group input-group-sm col-md-4">
 		    				<span class="input-group-addon text-success">$</span>
@@ -149,8 +167,9 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="taxable_investments">
 							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/investing">
-								Taxable Investments
+								<small><i class="glyphicon glyphicon-info-sign"></i></small>
 							</a>
+								Taxable Investments
 						</label>  
 						<div class="input-group input-group-sm col-md-4">
 		    				<span class="input-group-addon text-success">$</span>
@@ -168,10 +187,11 @@
 					<div class="form-group form-inline">
 						<label class="col-md-4 control-label">
 							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/debt">
-								Debt <small>(Loans, Mortgages)</small></label>
+								<small><i class="glyphicon glyphicon-info-sign"></i></small>
 							</a>
+								Debt <small>(Loans, Mortgages)</small></label>
 						<div class="input-group col-md-4">				
-							<button class="btn btn-info btn-xs" ng-click="addALoan()">
+							<button type="button" class="btn btn-info btn-xs" ng-click="addALoan()">
 								<i class="glyphicon glyphicon-plus"></i>
 								Add a loan
 							</button>
@@ -207,24 +227,75 @@
 
 			<div class="col-md-5">
 				<div class="lead">Results</div>
-				<ol>
-					<li ng-show="(((info.salary/12) * 3) > info.emergency_account)">
-						Before anything else, build an 
-						<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/commontopics#wiki_step_1.3A_build_an_emergency_fund">
-							emergency fund
-						</a>
-						with 3 months salary.
-					</li>
-					<li >
-						
-					</li>
+				
+				<ol class="">
 					<li>
 						Read every word of the 
 						<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/index">FAQs on /r/personalfinance</a>.
 					</li>
+					
+					<!-- Emergency account -->
+					<li ng-show="info.emergency_account == 0 || threeMonthsSalary() > info.emergency_account">
+						
+						<span ng-show="info.savings_account > 0 && threeMonthsSalary() > info.emergency_account">
+							Before adding to your savings account(s),
+						</span>
+						
+						<span ng-hide="info.savings_account > 0 && threeMonthsSalary() > info.emergency_account">
+							<span class="text-warning">Immediately</span> 
+						</span>
+
+						build an
+
+						<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/commontopics#wiki_step_1.3A_build_an_emergency_fund">
+							emergency fund
+						</a>
+						with 3 months salary ({{ threeMonthsSalary() | currency }}).
+					</li>
+
+					<!-- Loans -->
+					<li ng-show="info.salary < getTotalLoans()">
+						You have <span class="text-warning">high amounts of debt</span>. 
+						Please read about:
+							<ul>
+								<li>
+									<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/debt">personal debt</a> 
+								</li>
+								<li>
+									<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/housing">mortgages</a>
+								</li>
+								<li>
+									<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/studentloans">student loans</a>
+								</li>
+								<li>
+									and 
+									<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/collections">credit repair</a>
+								</li>
+							</ul>
+					</li>
+
+					<li ng-show="info.loans.length">
+						Pay down your loans, in order of highest interest rate:
+							<ul>
+								<li ng-repeat="loan in info.loans | orderBy: 'interest_rate': true"> {{ loan.name }} ({{ loan.interest_rate }} %)</li>
+							</ul>
+					</li>
+
+					<!-- 401k -->
+					<li ng-show="info.retirement_401k.company_match > 0">
+						Contribute to your 401k upto your employer's match ({{ info.retirement_401k.company_match }}%).
+					</li>
+
+					<li ng-show="info.retirement_401k.principle == 0 && (info.ira > 0 || info.taxable_investments > 0)">
+						In most cases, it is better to contribute to your 401k before contributing to your 
+						<span ng-show="info.ira > 0">IRA</span><span ng-show="info.taxable_investments > 0"> or Taxable Investments</span>.				
+					</li>
+
+					<!-- Taxable Investments -->
+
+					<!-- Age -->
 					<li ng-show="info.age < 22">
-						Please read <a target="_blank" href="https://www.reddit.com/r/personalfinance/wiki/teachme">this advice</a> 
-						for young folks like yourself.
+						<em class="text-warning">Whipper Snapper.</em> Please read <a target="_blank" href="https://www.reddit.com/r/personalfinance/wiki/teachme">this advice</a> targeted towards young people.
 					</li>
 				</ol>
 			</div>
