@@ -266,6 +266,7 @@
 					
 					<!-- Recommendations -->
 					<legend class="text-center text-success">Recommendations For You</legend>
+
 					<ol class="extra-spacing">
 						
 						<!-- Emergency account -->
@@ -319,13 +320,23 @@
 							<span ng-show="info.ira > 0">IRA</span><span ng-show="info.taxable_investments > 0"> or Taxable Investments</span>.				
 						</li>
 
+						<li ng-show="info.retirement_401k.company_match == 0 && info.retirement_401k.principle > 0">
+							Without a 401k company match, it might be beneficial to max your IRA before contributing to your 401k.
+						</li>
+
 						<!-- Taxable Investments -->
 						<li ng-show="info.taxable_investments > info.retirement_401k || info.taxable_investments > info.salary">
 							Your taxable investments 
 							<small class="text-warning">({{ info.taxable_investments | currency }})</small> could grow faster 
-							in a tax sheltered account.				
+							in a tax sheltered account (401k, IRA, .				
 						</li>
 
+						<!-- General -->
+						<li>
+							Read every word of the 
+							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/index">FAQs on /r/personalfinance</a>.
+						</li>
+						
 						<!-- Age -->
 						<li ng-show="info.age < 22">
 							Read <a target="_blank" href="https://www.reddit.com/r/personalfinance/wiki/teachme">this advice</a> targeted towards young people.
@@ -334,43 +345,6 @@
 				</div>
 			</div>
 		</div>
-
-	    <!-- 
-	    	Form
-				- Salary/income (pretax) (annual, monthly, bi-weekly)
-				
-				- Emergency account?
-					- Do you have it?
-					- How much is in it?
-	
-				- Loans
-					- School
-					- Credit Cards
-					- Car
-					-
-						- How much is each loan?
-						- What is the interest rate of each loan? 
-
-				- Savings acounts (total)
-					- Do you have it?
-					- How much is in it?
-					- How much do you contribute annually?
-
-				- Have a 401k?
-					- Do you have it?
-					- Does company match?
-				
-				- Have IRA?
-					- Do you have it?
-					- How much is in it?
-					- How much do you contribute annually?
-				
-				- Post-tax investments?
-					- Do you have it?
-					- How much is in it?
-					- How much do you contribute annually?
-
-	    -->
 
         <!-- Javascript-->
         <!-- Placed at the end of the document so the pages load faster -->
