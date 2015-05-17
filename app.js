@@ -4,17 +4,17 @@ var pfc = angular.module('pfc', []);
 pfc.controller('body', function ($scope) {
   
   $scope.info = {
-    age: 30,
+    // age: 30,
     retirement_401k: {
       principle: 0,
-      company_match: 6,
+      company_match: 0,
     },
     loans: [
     ],
-    salary: 100,
-    savings_account: 5,
+    // salary: 0,
+    savings_account: 0,
     emergency_account: 0,
-    ira: 5
+    ira: 0
   };
 
   $scope.threeMonthsSalary = function () {
