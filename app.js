@@ -41,6 +41,10 @@ pfc.controller('body', function ($scope) {
     $scope.info.loans.splice(index, 1);
   };
 
+  $scope.generateAlerts = function () {
+    
+  };
+
 });
 
 // Credit: http://stackoverflow.com/a/19890485
