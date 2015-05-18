@@ -5,7 +5,7 @@
         
         <!-- "I'm so meta. Even this" -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A simple personal finance checkup webapp following the guidelines of /r/personalfinance on Reddit.">
+        <meta name="description" content="An open source and simple personal finance webapp following the guidelines of /r/personalfinance on Reddit.">
         <meta name="author" content="Afaq Tariq">
         <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -47,17 +47,33 @@
     </head>
     <body ng-controller="body" class="container">
         
+        <a href="https://github.com/afaqurk/personal-finance-checkup">
+        	<img 
+        		style="position: absolute; top: 0; left: 0; border: 0;" 
+        		src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" 
+        		alt="Fork me on GitHub" 
+        		data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+        </a>
+
+        <div class="text-center page-header">
+	        <h1>Personal Finance Checkup</h1>
+	        <p>Based on advice from <a href="http://www.reddit.com/r/personalfinance/wiki/commontopics">/r/personalfinance</a>. </p>	
+	        <small class="text-warning">
+        		<b>Privacy First:</b>
+        		Information you enter never leaves your browser. No servers at all.
+        	</small>
+	    </div>
+
         <div class="sticky-footer text-center">
+        	<div class="text-warning">
+        		This is an <a href="https://github.com/afaqurk/personal-finance-checkup">open-source webapp</a>. 
+        	</div>
         	<small>
 	        	<em>Disclaimer:</em> This site does not provide official financial advice. 
 	        	All recommendations are general and heeded at your own expense. 
 	        </small>
         </div>
 
-        <div class="text-center page-header">
-	        <h1>Personal Finance Checkup</h1>
-	        <p>Based on advice from <a href="http://www.reddit.com/r/personalfinance/wiki/commontopics">/r/personalfinance</a>. </p>	
-	    </div>
 
 	    <div class="row">
 			
@@ -221,7 +237,7 @@
 						</a>
 							Debt <small>(Loans, Mortgages)</small></label>
 					<div class="input-group input-group-sm col-md-4">				
-						<button type="button" class="btn btn-info btn-xs" ng-click="addALoan()">
+						<button type="button" class="btn btn-primary btn-xs" ng-click="addALoan()">
 							<i class="glyphicon glyphicon-plus"></i>
 							Add a loan
 						</button>
