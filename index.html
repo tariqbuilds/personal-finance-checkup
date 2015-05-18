@@ -317,6 +317,11 @@
 							<a target="_blank" href="http://www.reddit.com/r/personalfinance/wiki/collections">credit repair</a>.
 						</li>
 
+						<li ng-show="hasLoansBelowMarketRate() > 0">
+							For <a href="http://www.reddit.com/r/personalfinance/wiki/debt#wiki_should_i_be_in_a_hurry_to_pay_off_lower_interest_loans.3F__what_rate_is_.22low.22_enough_to_where_i_should_just_pay_the_minimum.3F">low interest loans</a>, it might be better to 
+							pay the minimum and invest the money for higher returns over time. 
+						</li>
+
 						<li ng-show="info.loans.length > 0">
 							Before making any big purchases or plans, pay down your loan<span ng-show="info.loans.length > 1">s</span><span ng-show="info.loans.length == 1">.</span>
 							<span ng-show="info.loans.length > 1">

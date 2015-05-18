@@ -41,38 +41,10 @@ pfc.controller('body', function ($scope) {
     $scope.info.loans.splice(index, 1);
   };
 
-  $scope.generateAlerts = function () {
-    
+  $scope.hasLoansBelowMarketRate = function () {
+    return $scope.info.loans.filter(function (loan) {
+      return loan.interest_rate < 5;
+    }).length;
   };
 
 });
-
-// Credit: http://stackoverflow.com/a/19890485
-// pfc.directive('format', ['$filter', function ($filter) {
-//     return {
-//         require: '?ngModel',
-//         link: function (scope, elem, attrs, ctrl) {
-//             if (!ctrl) return;
-
-//             ctrl.$formatters.unshift(function (a) {
-//                 return $filter(attrs.format)(ctrl.$modelValue)
-//             });
-
-//             ctrl.$parsers.unshift(function (viewValue) {
-//                 var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
-//                 elem.val($filter(attrs.format)(plainNumber));
-//                 return plainNumber;
-//             });
-//         }
-//     };
-// }]);
-
-pfc.directive('infoForm', ['$filter', function ($filter) {
-    return {
-        restrict: 'E',
-        templateUrl: 'templates/info-form.html',
-        link: function (scope, elem, attrs) {
-
-        }
-    };
-}]);
